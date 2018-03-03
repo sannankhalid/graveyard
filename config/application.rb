@@ -6,6 +6,9 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+unless Object.const_defined?("AppConfig")
+  AppConfig = YAML.load_file('config/settings/application.yml')
+end
 module Graveyard
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
