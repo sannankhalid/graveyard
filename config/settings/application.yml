@@ -1,0 +1,28 @@
+valid_content_types: {
+  content_type_video: [ 'video/mp4','video/quicktime','video/3gpp2','video/3gp', 'video/3gpp', 'video/ogg', 'video/webm', 'video/x-flv', 'application/octet-stream'],
+  content_type_audio: [ 'audio/mpeg', 'audio/x-mpeg', 'audio/mp3', 'audio/x-mp3' ],
+  content_type_pdf:   [ 'application/pdf' ],
+  content_type_image: [ 'image/jpg', 'image/jpeg', 'image/png', 'image/gif', 'image/x-png' ]
+}
+
+file_icons: {
+['image/jpg', 'image/jpeg', 'image/png', 'image/gif', 'image/x-png']: 'fa fa-file-image-o',
+['application/pdf']: 'fa fa-file-pdf-o',
+['audio/mpeg', 'audio/x-mpeg', 'audio/mp3', 'audio/x-mp3']: 'fa fa-file-audio-o',
+['video/mp4','video/quicktime','video/3gpp2','video/3gp', 'video/3gpp', 'video/ogg', 'video/webm', 'video/x-flv', 'application/octet-stream']: 'fa fa-file-movie-o'
+}
+
+mobile_usa_code: '+1'
+mobile_pak_code: '+92'
+
+gmail_username: "ENV['EMAIL_USERNAME']"
+gmail_password: "ENV['EMAIL_PASSWORD']"
+address: "smtp.gmail.com"
+port: 587
+domain: 'gmail.com'
+
+production_username: 'xxx'
+production_password: 'xxx'
+production_domain: 'xxx'
+
+attachment_default_url: '/assets/missing.png'
