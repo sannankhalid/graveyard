@@ -1,18 +1,4 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
-
-
-
  *= require jquery-ui
  *= require bootstrap.min
  *= require style
@@ -23,3 +9,57 @@
 
  */
 @import "font-awesome";
+
+#error_explanation {
+  color: #f00;
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}
+
+.p0 {
+  padding: 0;
+}
+
+.m0 {
+  margin: 0;
+}
+
+.pl0 {
+  padding-left: 0;
+}
+
+.ml0 {
+  margin-left: 0;
+}
+
+.pr0 {
+  padding-right: 0;
+}
+
+.mr0 {
+  margin-right: 0;
+}
+
+.pt0 {
+  padding-top: 0;
+}
+
+.mt0 {
+  margin-top: 0;
+}
+
+.pb0 {
+  padding-bottom: 0;
+}
+
+.mb0 {
+  margin-bottom: 0;
+}
+
+//
+//.field_with_errors {
+//  @extend .control-group;
+//  @extend .error;
+//}
