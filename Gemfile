@@ -26,13 +26,14 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 gem 'devise'
-gem "paperclip", "~> 4.3"
+gem "paperclip", "~> 5.2.0"
 gem "font-awesome-rails"
 gem 'remotipart', '~> 1.2'
 gem 'friendly_id'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'thin'
+gem 'devise'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
@@ -52,6 +53,11 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+end
+
+
+group :production do
+  gem 'pg'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
