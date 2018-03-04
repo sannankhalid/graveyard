@@ -1,4 +1,4 @@
-<%= form_with(model: grave, local: true, html: {multipart: true}) do |form| %>
+<%= form_with(model: grave, local: true, html: {multipart: true, 'data-toggle': 'validator'}) do |form| %>
     <br/>
     <br/>
     <% if grave.errors.any? %>
@@ -14,60 +14,61 @@
     <% end %>
 
     <div class='form-group'>      <%= form.label :name %>
-      <%= form.text_field :name, id: :grave_name, class: 'form-control' %>
+      <%= form.text_field :name, id: :grave_name, class: 'form-control', 'required': true %>
     </div>
 
     <div class='form-group'>
       <label>Relationship Type</label>
-      <%= form.select(:relationship_id, @relationships.map {|p| [ p.name, p.id ] }, {prompt: 'Select Relation'}, class: 'form-control') %>
+      <%= form.select(:relationship_id, @relationships.map { |p| [p.name, p.id] }, {prompt: 'Select Relation'}, class: 'form-control', 'required': true) %>
     </div>
 
     <div class='form-group'>
       <%= form.label :relationship_name %>
-      <%= form.text_field :relationship_name, id: :grave_relationship_name, class: 'form-control' %>
+      <%= form.text_field :relationship_name, id: :grave_relationship_name, class: 'form-control', 'required': true %>
     </div>
 
     <div class='form-group'>
       <%= form.label :gender %>
-      <%= form.select(:gender, options_for_select([['Male', 'male'], ['Female', 'female']]), {prompt: 'Select Gender'}, class: 'form-control')%>
+      <%= form.select(:gender, options_for_select(Grave.genders.map { |k, v| [k, k] }, @grave.gender), {prompt: 'Select Gender'}, class: 'form-control', 'required': true) %>
 
     </div>
     <div class='form-group'>
       <label>Caste</label>
-      <%= form.select(:caste_id, @castes.map {|p| [ p.name, p.id ] }, {prompt: 'Select Caste'}, class: 'form-control') %>
+      <%= form.select(:caste_id, @castes.map { |p| [p.name, p.id] }, {prompt: 'Select Caste'}, class: 'form-control', 'required': true) %>
 
     </div>
 
     <div class='form-group'>
       <%= form.label :died_at %>
       <%= form.date_select :died_at, id: :grave_died_at, :start_year => Date.current.year, :end_year => 1920,
-            prompt: { day: 'Select day', month: 'Select month', year: 'Select year' },:include_blank => true, class: 'form-control' %>
+                           prompt: {day: 'Select day', month: 'Select month', year: 'Select year'}, :include_blank => true, class: 'form-control', 'required': true %>
     </div>
 
     <div class='form-group'>
       <%= form.label :age %>
-      <%= form.select :age, options_for_select(0..140, @grave.age), { prompt: 'Select age' }, class: 'form-control' %>
+      <%= form.select :age, options_for_select(0..140, @grave.age), {prompt: 'Select age'}, class: 'form-control', 'required': true %>
     </div>
 
     <div class='form-group'>
       <%= form.label :number %>
-      <%= form.text_field :number, id: :grave_number, class: 'form-control' %>
+      <%= form.text_field :number, id: :grave_number, class: 'form-control', 'required': true %>
     </div>
 
     <div class='form-group'>
       <label>Photo</label>
       <%= form.fields_for :attachment do |attachment| %>
-          <%= attachment.file_field :document, class: 'form-control' %>
+          <%= attachment.file_field :document, class: 'form-control', 'required': true %>
       <% end %>
     </div>
 
-    <div class='form-group'>
-      <label>Current Photo</label>
-      <% if @grave.attachment.present? %>
-          <%= image_tag @grave.attachment.document.url(:medium), class: 'img-responsive' %>
-      <% end %>
-    </div>
-
+    <% if params[:action] == 'edit' %>
+        <div class='form-group'>
+          <label>Current Photo</label>
+          <% if @grave.attachment.present? %>
+              <%= image_tag @grave.attachment.document.url(:medium), class: 'img-responsive' %>
+          <% end %>
+        </div>
+    <% end %>
 
 
 

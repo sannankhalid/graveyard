@@ -23,4 +23,3 @@
 //= require datatables-bootstrap/dataTables.bootstrap.min
 //= require datatables-responsive/dataTables.responsive
 //= require datatables-tabletools/dataTables.tableTools
-//= require components/datatables

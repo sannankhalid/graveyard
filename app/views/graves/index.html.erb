@@ -4,52 +4,109 @@
 <br/>
 <br/>
 
-<table id="example" cellspacing="0" width="100%" class=' display'>
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th>Relationship</th>
-    <th>Relationship name</th>
-    <th>Gender</th>
-    <th>Died at</th>
-    <th>Age</th>
-    <th>Number</th>
-    <th>Created by</th>
-    <th>Updated by</th>
-    <th colspan="2"></th>
-  </tr>
-  </thead>
 
-  <tbody>
-  <% @graves.each do |grave| %>
-      <tr>
-        <td><%= grave.name %></td>
-        <td><%= grave.relationship_id %></td>
-        <td><%= grave.relationship_name %></td>
-        <td><%= grave.gender %></td>
-        <td><%= grave.died_at %></td>
-        <td><%= grave.age %></td>
-        <td><%= grave.number %></td>
-        <td><%= grave.created_by_id %></td>
-        <td><%= grave.updated_by_id %></td>
-        <td><%= link_to 'Edit', edit_grave_path(grave) %></td>
-        <td><%= link_to 'Destroy', grave, method: :delete, data: {confirm: 'Are you sure?'} %></td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
+<div class="dataTables_wrapper form-inline dt-bootstrap" id="DataTables_Table_0_wrapper">
+  <div class="row">
+    <div class="col-sm-12">
+      <table id="example" aria-describedby="DataTables_Table_0_info" class="table table-hover dataTable table-striped width-full dtr-inline" data-language="{'info': ''}" data-ordering="false" data-paging="false" data-plugin="dataTable" data-searching="false" role="grid">
+        <thead>
+        <tr role="row">
+          <th class="<%= get_sort_class('name') %>" colspan="1" rowspan="1" tabindex="0">
+            Name
+          </th>
+
+          <th class="<%= get_sort_class('relationship_type_id') %>" colspan="1" rowspan="1" tabindex="0">
+            Relationship
+          </th>
+
+          <th class="<%= get_sort_class('relationship_name') %>" colspan="1" rowspan="1" tabindex="0">
+            Relationship Name
+          </th>
+
+
+          <th class="<%= get_sort_class('Gender') %>" colspan="1" rowspan="1" tabindex="0">
+            Gender
+          </th>
+
+
+          <th class="<%= get_sort_class('age') %>" colspan="1" rowspan="1" tabindex="0">
+            Age
+          </th>
+
+          <th class="<%= get_sort_class('died_at') %>" colspan="1" rowspan="1" tabindex="0">
+            Died
+          </th>
+
+          <th>
+            Photo
+          </th>
+
+          <th></th>
+          <th></th>
+        </tr>
+
+        </thead>
+        <tbody>
+        <% @graves.each do |grave| %>
+            <tr>
+              <td><%= grave.name %></td>
+              <td><%= grave.relationship.try(:name) %></td>
+              <td><%= grave.relationship_name %></td>
+              <td><%= grave.gender %></td>
+
+              <td><%= grave.age %></td>
+              <td><%= grave.died_at.strftime("%b %d, %Y") if grave.died_at.present? %></td>
+              <td>
+                <% if grave.attachment.present? %>
+                    <%= image_tag grave.attachment.document(:thumb), class: 'img-responsive' %>
+                <% end %>
+              </td>
+
+              <td><%= link_to 'Edit', edit_grave_path(grave) %></td>
+              <td><%= link_to 'Destroy', grave, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
 <br>
 
-<%= link_to 'New grave', new_grave_path %>
+<!--<table id="example" cellspacing="0" width="100%" class=' display'>-->
+<!--<thead>-->
+<!--<tr>-->
+<!--<th>Name</th>-->
+<!--<th>Relationship</th>-->
+<!--<th>Relationship name</th>-->
+<!--<th>Gender</th>-->
+<!--<th>Died at</th>-->
+<!--<th>Age</th>-->
+<!--<th>Number</th>-->
+<!--<th>Created by</th>-->
+<!--<th>Updated by</th>-->
+<!--<th colspan="2"></th>-->
+<!--</tr>-->
+<!--</thead>-->
+
+
+<!--</table>-->
+<%= link_to 'New grave', new_grave_path, class: 'btn btn-primary' %>
 
 <script type="text/javascript">
   $(document).ready(function () {
+
     $('#example').DataTable({
-      "pageLength": 25,
+      "pageLength": 1,
       dom: 'Bfrtip',
+      responsive: true,
+      "pagingType": "full_numbers",
+      "paging": true,
+      "searching": true,
+      "ordering": true,
       buttons: [
-        { extend: 'excel', text: 'Export Excel File', className: 'btn btn-primary' }
+        {extend: 'excel', text: 'Export Excel File', className: 'btn btn-primary'}
       ]
     });
   });

@@ -12,7 +12,8 @@ class Grave < ApplicationRecord
   validates_presence_of :caste_id, message: 'Select Caste'
   validates_presence_of :relationship_name, message: 'Select Relationship Name'
   # validates :gender, inclusion: { in: [:male, :female] }
-  # enum gender: [male: 1, female: 2]
+  enum gender: { 'male': 1, 'female': 2 }
+
 
 
 end

@@ -23,4 +23,17 @@ module ApplicationHelper
     end
     nil
   end
+  def get_sort_class sortby
+    return "sorting_desc" if params[:sort].to_s.include?("#{sortby} desc")
+    return "sorting_asc" if params[:sort].to_s.include?("#{sortby} asc")
+  end
+
+  def get_direction_class column_name
+    return "sorting_desc" if params[:direction].to_s.include?("desc")&& params[:sort].include?("#{column_name}")
+    return "sorting_asc" if params[:direction].to_s.include?("asc") && params[:sort].include?("#{column_name}")
+  end
+  def link_to_sort name,sortby , **options
+    sortby << (params[:sort].to_s.include?("#{sortby} asc") ? " desc" : " asc")
+    link_to(name ,url_for(params.merge(sort: sortby)),options)
+  end
 end
