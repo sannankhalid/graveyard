@@ -1,4 +1,5 @@
 class CastesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_caste, only: [:show, :edit, :update, :destroy]
 
   # GET /castes
