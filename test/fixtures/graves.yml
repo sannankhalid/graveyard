@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  relationship_id: 1
+  relationship_name: MyString
+  gender: 1
+  died_at: 2018-03-04 10:21:36
+  age: 1
+  number: MyString
+  created_by_id: 1
+  updated_by_id: 1
+
+two:
+  name: MyString
+  relationship_id: 1
+  relationship_name: MyString
+  gender: 1
+  died_at: 2018-03-04 10:21:36
+  age: 1
+  number: MyString
+  created_by_id: 1
+  updated_by_id: 1

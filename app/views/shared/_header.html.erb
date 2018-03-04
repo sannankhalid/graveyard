@@ -2,13 +2,13 @@
   <div class="container">
     <div class="top-row">
       <div class="row">
-        <div class="col-md-3 col-sm-6 col-xs-6">
+        <div class="col-md-4 col-sm-6 col-xs-6">
           <div id="logo">
             <!--<a href="index.html"><img src="/assets/logo.png" alt="logo"></a>-->
             <a href="/"><span>Firdousia</span>Qabristan</a>
           </div>
         </div>
-        <div class="col-md-9 col-sm-12 col-xs-12 remove-padd">
+        <div class="col-md-8 col-sm-12 col-xs-12 remove-padd">
           <nav class="navbar navbar-default">
             <div class="navbar-header page-scroll">
               <button data-target=".navbar-ex1-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
@@ -25,7 +25,8 @@
                 <li><a data-hover="Contact Us" href="contact.html"><span>contact Us</span></a></li>
                 <% if current_user %>
                   <li class="pull-right"><a data-hover="Grave Management" href="/graves"><span><b>Grave Management</b></span></a></li>
-                  <li class="pull-right"><a data-hover="Sign out" href="/users/sign_out" methods="delete"><span><b>Sign out</b></span></a></li>
+                  <!--<li class="pull-right"><a data-hover="Grave Management" href="/relationships"><span><b>Relationship Management</b></span></a></li>-->
+                  <li class="pull-right"><a data-hover="Sign out" href="/users/sign_out" data-method="delete"><span><b>Sign out</b></span></a></li>
                 <% else %>
                     <li class="pull-right"><a data-hover="Sign in" href="/users/sign_in" ><span><b>Sign in</b></span></a></li>
               <% end %>

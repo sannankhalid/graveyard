@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  created_by_id: 1
+  updated_by_id: 1
+  attachable_id: 1
+  attachable_type: MyString
+
+two:
+  created_by_id: 1
+  updated_by_id: 1
+  attachable_id: 1
+  attachable_type: MyString

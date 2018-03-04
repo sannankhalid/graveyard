@@ -21,26 +21,33 @@
   <%= render partial: 'shared/navbar' %>
   <%= render partial: 'shared/header' %>
 
+  <% if current_user %>
+      <div class="container">
+        <div class="row">
+          <div class='breadcrumb_container'>
+            <ol class='breadcrumb breadcrumb-arrow list-unstyled'>
+              <%= render_breadcrumbs :tag => :li, :separator => '' %>
+            </ol>
+          </div>
+        </div>
+      </div>
+  <% end %>
   <!--<div class="container">-->
 
-    <!--<%#= flash_messages %>-->
+  <!--<%#= flash_messages %>-->
   <!--</div>-->
   <!--&lt;!&ndash; /container &ndash;&gt;-->
   <!--<p class="notice">-->
-    <!--<%#= notice %>-->
+  <!--<%#= notice %>-->
   <!--</p>-->
   <!--<p class="alert">-->
-    <!--<%#= alert %>-->
+  <!--<%#= alert %>-->
   <!--</p>-->
 
 
-  <section>
-    <div class="container">
-      <div class="row">
-        <%= yield %>
-      </div>
-    </div>
-  </section>
+  <div class="container">
+    <%= yield %>
+  </div>
   <%= render partial: 'shared/footer' %>
 </div>
 </body>

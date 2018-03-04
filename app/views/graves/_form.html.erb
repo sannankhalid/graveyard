@@ -1,0 +1,62 @@
+<%= form_with(model: grave, local: true, html: {multipart: true}) do |form| %>
+    <br/>
+    <br/>
+    <% if grave.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(grave.errors.count, "error") %> prohibited this grave from being saved:</h2>
+
+          <ul>
+            <% grave.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class='form-group'>      <%= form.label :name %>
+      <%= form.text_field :name, id: :grave_name, class: 'form-control' %>
+    </div>
+
+    <div class='form-group'>
+      <label>Relationship Type</label>
+      <%= form.select(:relationship_id, @relationships.map {|p| [ p.name, p.id ] }, {prompt: 'Select Relation'}, class: 'form-control') %>
+    </div>
+
+    <div class='form-group'>
+      <%= form.label :relationship_name %>
+      <%= form.text_field :relationship_name, id: :grave_relationship_name, class: 'form-control' %>
+    </div>
+
+    <div class='form-group'>
+      <%= form.label :gender %>
+      <%= form.select(:gender, options_for_select([['Male', 'male'], ['Female', 'female']]), {prompt: 'Select Gender'}, class: 'form-control')%>
+
+    </div>
+
+    <div class='form-group'>
+      <%= form.label :died_at %>
+      <%= form.date_select :died_at, id: :grave_died_at, :start_year => Date.current.year, :end_year => 1920,
+            prompt: { day: 'Select day', month: 'Select month', year: 'Select year' },:include_blank => true, class: 'form-control' %>
+    </div>
+
+    <div class='form-group'>
+      <%= form.label :age %>
+      <%= form.select :age, options_for_select(0..140), { prompt: 'Select age' }, class: 'form-control' %>
+    </div>
+
+    <div class='form-group'>
+      <%= form.label :number %>
+      <%= form.text_field :number, id: :grave_number, class: 'form-control' %>
+    </div>
+
+    <div class='form-group'>
+      <label>Photo</label>
+      <%= form.fields_for :attachment do |attachment| %>
+          <%= attachment.file_field :document, class: 'form-control' %>
+      <% end %>
+    </div>
+
+    <div class='actions'>
+      <%= form.submit 'Submit', class: 'btn btn-primary' %>
+    </div>
+<% end %>
