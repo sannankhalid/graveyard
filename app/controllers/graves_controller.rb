@@ -45,7 +45,7 @@ class GravesController < ApplicationController
     end
     respond_to do |format|
       if @grave.save
-        format.html { redirect_to @grave, notice: 'Grave was successfully created.' }
+        format.html { redirect_to graves_url, notice: 'Grave was successfully created.' }
         format.json { render :show, status: :created, location: @grave }
       else
         @grave.build_attachment
@@ -61,7 +61,7 @@ class GravesController < ApplicationController
     @grave.updated_by_id = current_user.id
     respond_to do |format|
       if @grave.update(grave_params)
-        format.html { redirect_to @grave, notice: 'Grave was successfully updated.' }
+        format.html { redirect_to graves_url, notice: 'Grave was successfully updated.' }
         format.json { render :show, status: :ok, location: @grave }
       else
         format.html { render :edit }
