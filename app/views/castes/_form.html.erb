@@ -1,0 +1,27 @@
+<%= form_with(model: caste, local: true) do |form| %>
+  <% if caste.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(caste.errors.count, "error") %> prohibited this caste from being saved:</h2>
+
+      <ul>
+      <% caste.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :caste_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_active %>
+    <%= form.text_field :is_active, id: :caste_is_active %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

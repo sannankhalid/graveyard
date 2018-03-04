@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Castes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Is active</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @castes.each do |caste| %>
+      <tr>
+        <td><%= caste.name %></td>
+        <td><%= caste.is_active %></td>
+        <td><%= link_to 'Show', caste %></td>
+        <td><%= link_to 'Edit', edit_caste_path(caste) %></td>
+        <td><%= link_to 'Destroy', caste, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Caste', new_caste_path %>

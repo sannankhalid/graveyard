@@ -18,3 +18,9 @@
 //= require lightbox-plus-jquery.min
 //= require instafeed.min
 //= require custom
+
+//= require datatables/jquery.dataTables.min
+//= require datatables-bootstrap/dataTables.bootstrap.min
+//= require datatables-responsive/dataTables.responsive
+//= require datatables-tabletools/dataTables.tableTools
+//= require components/datatables

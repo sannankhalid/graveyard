@@ -5,10 +5,16 @@
 
  *= require lightbox.min
  *= require responsive
+ *= require datatables/datatables.min.css
+ *= require datatables-bootstrap/dataTables.bootstrap.min.css
+ *= require datatables-responsive/dataTables.responsive.css
+
 
 
  */
+
 @import "font-awesome";
+//@import "datatables.min";
 
 #error_explanation {
   color: #f00;

@@ -13,6 +13,16 @@ def seed_relationships
 
 end
 
+def seed_castes
+  castes = AppConfig['pakistan_caste']
+  if castes.present?
+    castes.each do |caste|
+      Caste.where(name: caste).first_or_create
+    end
+  end
+end
+
 
 create_admin_user
 seed_relationships
+seed_castes

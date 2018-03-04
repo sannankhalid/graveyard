@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @caste.name %>
+</p>
+
+<p>
+  <strong>Is active:</strong>
+  <%= @caste.is_active %>
+</p>
+
+<%= link_to 'Edit', edit_caste_path(@caste) %> |
+<%= link_to 'Back', castes_path %>

@@ -88,10 +88,11 @@ class GravesController < ApplicationController
 
     def form_objects
       @relationships  = Relationship.where(is_active:  true)
+      @castes  = Caste.where(is_active:  true).order(:name)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def grave_params
-      params.require(:grave).permit(:name, :relationship_id, :relationship_name, :gender, :died_at, :age, :number, attachment_attributes: [:id, :document])
+      params.require(:grave).permit(:name, :relationship_id, :relationship_name, :gender, :caste_id, :died_at, :age, :number, attachment_attributes: [:id, :document])
     end
 end

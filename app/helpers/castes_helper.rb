@@ -1,0 +1,2 @@
+module CastesHelper
+end
