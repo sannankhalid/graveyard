@@ -33,9 +33,10 @@
           <th>
             Photo
           </th>
-
-          <th></th>
-          <th></th>
+          <% if current_user %>
+              <th></th>
+              <th></th>
+          <% end %>
         </tr>
 
         </thead>
@@ -54,9 +55,10 @@
                     <%= image_tag grave.attachment.document(:thumb), class: 'img-responsive' %>
                 <% end %>
               </td>
-
-              <td><%= link_to 'Edit', edit_grave_path(grave) %></td>
-              <td><%= link_to 'Destroy', grave, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+              <% if current_user %>
+                  <td><%= link_to 'Edit', edit_grave_path(grave) %></td>
+                  <td><%= link_to 'Destroy', grave, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+              <% end %>
             </tr>
         <% end %>
         </tbody>
