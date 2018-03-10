@@ -28,7 +28,7 @@ function select2_graves_dropdown(selector) {
         };
       }
     },
-    minimumInputLength: 1
+    minimumInputLength: 3
   });
 
 }

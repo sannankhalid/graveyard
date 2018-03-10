@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   end
 
   resources :home do
-    post :search
+    collection do
+      post :search_form
+      get :search
+    end
+    post :search_form
     get :search
   end
 

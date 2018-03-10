@@ -1,4 +1,4 @@
-<%= form_with(model: grave, local: true, html: {multipart: true, 'data-toggle': 'validator', controller: 'home', action: 'search'}) do |form| %>
+<%= form_for(grave, local: true, url:{controller: 'home', action: 'search_form'}, html: {multipart: true, 'data-toggle': 'validator'}) do |form| %>
     <br/>
     <br/>
     <% if grave.errors.any? %>
@@ -29,10 +29,10 @@
     <div class='form-group'>
       <%= form.label :name %>
 
-      <%= form.select 'grave_id', '',{include_blank: "Name"},'data-placeholder' => "Name" , id: 'grave_id', 'data-plugin' => "select2",
+      <%= form.select 'id', '',{include_blank: "Name"},'data-placeholder' => "Name" , id: 'grave_id', 'data-plugin' => "select2",
                       'data-allow-clear'=>"true", 'data-max-options'=>"10", class:'form-control js-data-example-ajax grave_name_selector',
                       'data-parsley-required' => true, 'data-parsley-required-message' => "Name is required" ,
-                      'data-url' => get_graves_path,disabled: Grave.count < 1%>
+                      'data-url' => get_graves_path,disabled: Grave.count < 1, 'required': true%>
     </div>
 
     <div class='form-group'>
@@ -46,8 +46,10 @@
     </div>
 
     <div class='form-group'>
-      <%= form.label :number %>
-      <%= form.text_field :number, id: :grave_number, class: 'form-control', 'required': true %>
+      <label>
+        Grave Number
+      </label>
+      <%= form.text_field :number, id: :grave_number, class: 'form-control' %>
     </div>
 
     <div class='actions'>
