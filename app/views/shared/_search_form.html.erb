@@ -1,0 +1,62 @@
+<%= form_with(model: grave, local: true, html: {multipart: true, 'data-toggle': 'validator', controller: 'home', action: 'search'}) do |form| %>
+    <br/>
+    <br/>
+    <% if grave.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(grave.errors.count, "error") %> prohibited this grave from being saved:</h2>
+
+          <ul>
+            <% grave.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class='form-group'>
+      <label>Gender</label>
+      <br/>
+      <% Grave.genders.each do |k, v| %>
+          <label class="radio-inline">
+            <input type="radio" name="grave[gender]" value="<%= k %>"> <%= k.capitalize %>
+          </label>
+      <% end %>
+
+    </div>
+
+
+
+    <div class='form-group'>
+      <%= form.label :name %>
+
+      <%= form.select 'grave_id', '',{include_blank: "Name"},'data-placeholder' => "Name" , id: 'grave_id', 'data-plugin' => "select2",
+                      'data-allow-clear'=>"true", 'data-max-options'=>"10", class:'form-control js-data-example-ajax grave_name_selector',
+                      'data-parsley-required' => true, 'data-parsley-required-message' => "Name is required" ,
+                      'data-url' => get_graves_path,disabled: Grave.count < 1%>
+    </div>
+
+    <div class='form-group'>
+      <label>Caste</label>
+
+      <%= form.select 'caste_id', '',{include_blank: "Caste"},'data-placeholder' => "Caste" , id: 'caste_id', 'data-plugin' => "select2",
+                      'data-allow-clear'=>"true", 'data-max-options'=>"10", class:'form-control js-data-example-ajax caste_name_selector',
+                      'data-parsley-required' => true, 'data-parsley-required-message' => "Caste is required" ,
+                      'data-url' => get_caste_path,disabled: Caste.count < 1%>
+
+    </div>
+
+    <div class='form-group'>
+      <%= form.label :number %>
+      <%= form.text_field :number, id: :grave_number, class: 'form-control', 'required': true %>
+    </div>
+
+    <div class='actions'>
+      <%#= form.submit 'Submit', class: 'btn btn-primary' %>
+    </div>
+<% end %>
+
+<script type="text/javascript">
+  select2_graves_dropdown('.grave_name_selector');
+  select2_graves_dropdown('.caste_name_selector');
+
+</script>

@@ -12,6 +12,8 @@
 
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag  (params[:controller]) if Graveyard::Application.assets.find_asset("#{params[:controller]}.css.scss") %>
+  <%= javascript_include_tag  (params[:controller]) if params[:controller] !~ /application/i && Graveyard::Application.assets.find_asset("#{params[:controller]}.js") %>
 
 
 </head>
@@ -50,5 +52,6 @@
   </div>
   <%= render partial: 'shared/footer' %>
 </div>
+
 </body>
 </html>

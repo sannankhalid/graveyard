@@ -9,6 +9,14 @@ Rails.application.routes.draw do
   devise_scope :user do
     get 'sign_in', to: 'devise/sessions#new'
   end
+
+  resources :home do
+    post :search
+    get :search
+  end
+
+  get "graves_data" => "home#graves_data" , as: :get_graves
+  get "caste_data" => "home#caste_data" , as: :get_caste
   root 'home#index'
 
 end
