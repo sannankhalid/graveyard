@@ -27,9 +27,9 @@ class HomeController < ApplicationController
     @graves = Grave.where(options[:conditions]).where(options[:raw_conditions])
                 .where.not(options[:not_conditions]).order(options[:sort]).limit(20)
 
-    debugger
-
-
+    respond_to do |format|
+        format.js {render layout: false}
+    end
   end
 
   def set_conditions_params options

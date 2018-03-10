@@ -1,4 +1,4 @@
-<%= form_for(grave, local: true, url:{controller: 'home', action: 'search_form'}, html: {multipart: true, 'data-toggle': 'validator'}) do |form| %>
+<%= form_for(grave, local: true, url:{controller: 'home', action: 'search_form'}, remote: true, html: {multipart: true, 'data-toggle': 'validator'}) do |form| %>
     <br/>
     <br/>
     <% if grave.errors.any? %>
@@ -53,7 +53,7 @@
     </div>
 
     <div class='actions'>
-      <%#= form.submit 'Submit', class: 'btn btn-primary' %>
+      <%= form.submit 'Submit', class: 'btn btn-primary' %>
     </div>
 <% end %>
 
