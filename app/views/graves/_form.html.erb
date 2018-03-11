@@ -57,7 +57,13 @@
     <div class='form-group'>
       <label>Photo</label>
       <%= form.fields_for :attachment do |attachment| %>
-          <%= attachment.file_field :document, class: 'form-control', 'required': true %>
+
+          <% if params[:action] == 'edit' && @grave.attachment.blank? %>
+              <%= attachment.file_field :document, class: 'form-control', 'required': true %>
+          <% else %>
+              <%= attachment.file_field :document, class: 'form-control'%>
+          <% end %>
+
       <% end %>
     </div>
 

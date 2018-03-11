@@ -89,8 +89,8 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
   config.assets.digest = true
-  config.action_mailer.default_url_options = { host: 'https://graveyardpk.herokuapp.com/' }
-  APP_URL = 'https://graveyardpk.herokuapp.com/'
+  config.action_mailer.default_url_options = { host: 'http://145.239.78.6' }
+  APP_URL = 'http://145.239.78.6'
 
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
