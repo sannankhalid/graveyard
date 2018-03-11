@@ -22,7 +22,7 @@ class HomeController < ApplicationController
 
     grave = Grave.find grave_params[:id] if grave_params[:id].present?
 
-    options[:raw_conditions]=['LOWER(name) LIKE LOWER(?) || LOWER(relationship_name) LIKE LOWER(?)', "#{grave.name}%", "#{grave.name}%"] if grave.present?
+    options[:raw_conditions]=['name ILIKE ? relationship_name ILIKE ?', "#{grave.name}%", "#{grave.name}%"] if grave.present?
 
     @graves = Grave.where(options[:conditions]).where(options[:raw_conditions])
                 .where.not(options[:not_conditions]).order(options[:sort]).limit(20)
