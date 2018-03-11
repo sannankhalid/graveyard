@@ -40,7 +40,7 @@ class HomeController < ApplicationController
 
   def graves_data
 
-    graves = Grave.select([:id, :name, :relationship_name, :relationship_id]).where('LOWER(name) LIKE LOWER(?) || LOWER(relationship_name) LIKE LOWER(?)', "#{params[:q].to_s.strip}%", "#{params[:q].to_s.strip}%").order(:name).limit(10).uniq.map { |e|
+    graves = Grave.select([:id, :name, :relationship_name, :relationship_id]).where('name ILIKE LOWER(?) || relationship_name ILIKE LOWER(?)', "#{params[:q].to_s.strip}%", "#{params[:q].to_s.strip}%").order(:name).limit(10).uniq.map { |e|
 
 
       name_full = []
