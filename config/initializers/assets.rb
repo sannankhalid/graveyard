@@ -17,6 +17,9 @@ Rails.application.config.assets.precompile += %w( fonts/stylesheet.css)
 
 Rails.application.config.assets.precompile += %w( home.js )
 Rails.application.config.assets.precompile += %w( home.css.scss )
+Rails.application.config.assets.precompile += %w( castes.js )
+Rails.application.config.assets.precompile += %w( castes.css.scss )
+
 Rails.application.config.assets.precompile += %w( graves.js )
 Rails.application.config.assets.precompile += %w( graves.css.scss )
 Dir.glob("#{Rails.root}/vendor/assets/fonts/**/").each do |path|
