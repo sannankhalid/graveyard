@@ -24,6 +24,7 @@
                 <li><a data-hover="About"  href="javascript:"><span>About</span></a></li>
                 <li><a data-hover="Contact Us" href="javascript:"><span>contact Us</span></a></li>
                 <% if current_user %>
+                  <li class="pull-right"><a data-hover="Grave Management" href="/castes"><span><b>Castes</b></span></a></li>
                   <li class="pull-right"><a data-hover="Grave Management" href="/graves"><span><b>Grave Management</b></span></a></li>
                   <!--<li class="pull-right"><a data-hover="Grave Management" href="/relationships"><span><b>Relationship Management</b></span></a></li>-->
                   <li class="pull-right"><a data-hover="Sign out" href="/users/sign_out" data-method="delete"><span><b>Sign out</b></span></a></li>
