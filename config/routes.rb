@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :identities
   resources :castes
   resources :attachments
   resources :graves
@@ -21,6 +22,7 @@ Rails.application.routes.draw do
 
   get "graves_data" => "home#graves_data" , as: :get_graves
   get "caste_data" => "home#caste_data" , as: :get_caste
+  get "identity_data" => "home#identity" , as: :get_identity
   root 'home#index'
 
 end

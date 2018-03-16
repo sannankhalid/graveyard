@@ -17,36 +17,49 @@ class HomeController < ApplicationController
     options[:conditions].deep_merge!(gender: grave_params[:gender]) if grave_params[:gender].present?
     options[:conditions].deep_merge!(number: grave_params[:number]) if grave_params[:number].present?
     options[:conditions].deep_merge!(number: grave_params[:number]) if grave_params[:number].present?
-    options[:conditions].deep_merge!(caste: {caste_id: grave_params[:caste_id]}) if grave_params[:caste_id].present?
+    options[:conditions].deep_merge!(graves: {caste_id: grave_params[:caste_id]}) if grave_params[:caste_id].present?
+    options[:conditions].deep_merge!(graves: {identity_id: grave_params[:identity_id]}) if grave_params[:identity_id].present?
 
 
     grave = Grave.find grave_params[:id] if grave_params[:id].present?
 
-    options[:raw_conditions]=['LOWER(name) LIKE LOWER(?) || LOWER(relationship_name) LIKE LOWER(?)', "#{grave.name}%", "#{grave.name}%"] if grave.present?
+    options[:raw_conditions]=['LOWER(name) LIKE LOWER(?) || LOWER(relationship_name) LIKE LOWER(?)', "%#{grave.name}%", "%#{grave.name}%"] if grave.present?
 
     @graves = Grave.where(options[:conditions]).where(options[:raw_conditions])
                 .where.not(options[:not_conditions]).order(options[:sort]).limit(20)
 
     respond_to do |format|
-        format.js {render layout: false}
+      format.js { render layout: false }
     end
   end
 
-  def set_conditions_params options
+  def identity
+    identities = Identity.select([:id, :name]).where('LOWER(name) Like Lower(?)', "%#{params[:q].to_s.strip}%").order(:name).limit(10).uniq.map { |identity|
 
+      {
+        id: identity.id,
+        text: identity.name
+      }
+    }
+    respond_to do |format|
+      format.json {
+        render json: identities
+      }
+      format.html do
+      end
+    end
 
   end
 
 
   def graves_data
 
-    graves = Grave.select([:id, :name, :relationship_name, :relationship_id]).where('LOWER(name) LIKE LOWER(?) || LOWER(relationship_name) LIKE LOWER(?)', "#{params[:q].to_s.strip}%", "#{params[:q].to_s.strip}%").order(:name).limit(10).uniq.map { |e|
+    graves = Grave.select([:id, :name, :relationship_name, :relationship_id]).where('LOWER(name) LIKE LOWER(?) || LOWER(relationship_name) LIKE LOWER(?)', "%#{params[:q].to_s.strip}%", "%#{params[:q].to_s.strip}%").order(:name).limit(10).uniq.map { |e|
 
 
       name_full = []
       name_full << e.name
       name_full << "#{e.relationship.try(:slug)}  #{e.relationship_name}" if e.relationship.present?
-      "#{e.name} #{ }"
       {
         id: e.id,
         text: name_full.join(' ')

@@ -4,6 +4,7 @@ class Grave < ApplicationRecord
   belongs_to :updater,class_name: 'User',foreign_key: 'updated_by_id'
   belongs_to :relationship
   belongs_to :caste
+  belongs_to :identity
 
   accepts_nested_attributes_for :attachment,  allow_destroy: true
 

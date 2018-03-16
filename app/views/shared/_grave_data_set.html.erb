@@ -26,6 +26,16 @@
             Age
           </th>
 
+          <th class="<%= get_sort_class('age') %>" colspan="1" rowspan="1" tabindex="0">
+            Number
+          </th>
+          <th class="<%= get_sort_class('age') %>" colspan="1" rowspan="1" tabindex="0">
+            Caste
+          </th>
+          <th class="<%= get_sort_class('age') %>" colspan="1" rowspan="1" tabindex="0">
+            Identity
+          </th>
+
           <th class="<%= get_sort_class('died_at') %>" colspan="1" rowspan="1" tabindex="0">
             Died
           </th>
@@ -49,10 +59,13 @@
               <td><%= grave.gender %></td>
 
               <td><%= grave.age %></td>
+              <td><%= grave.number %></td>
+              <td><%= grave.caste.try(:name) %></td>
+              <td><%= grave.identity.try(:name) %></td>
               <td><%= grave.died_at.strftime("%b %d, %Y") if grave.died_at.present? %></td>
               <td>
                 <% if grave.attachment.present? %>
-                    <%= image_tag grave.attachment.document(:thumb), class: 'img-responsive' %>
+                    <%= link_to image_tag(grave.attachment.document(:medium), width: 200, class: 'img-responsive'), grave.attachment.document(:original), target: '_blank' %>
                 <% end %>
               </td>
               <% if current_user %>

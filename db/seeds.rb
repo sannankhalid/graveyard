@@ -5,8 +5,10 @@ def create_admin_user
 end
 
 def seed_relationships
-  relation_slug = ['F/O', 'M/O', 'Son/O', 'H/O', 'Wife/O', 'Brother/O', 'Sister/O']
-  %w(Father Mother Son Husband Wife Brother Sister).each_with_index do |name,i|
+  # relation_slug = ['F/O', 'M/O', 'Son/O', 'H/O', 'Wife/O', 'Brother/O', 'Sister/O']
+  # %w(Father Mother Son Husband Wife Brother Sister).each_with_index do |name,i|
+  relation_slug = ['Son/O', 'Wife/O', 'Daughter/O']
+  %w(Son Wife Daughter).each_with_index do |name,i|
     relation = Relationship.where(name: name).first
     Relationship.create(name: name, slug: relation_slug[i]) if relation.blank?
   end

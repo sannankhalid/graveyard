@@ -93,3 +93,27 @@
   -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
 }
+.demo3 {
+  font-family: Arial, sans-serif;
+  border: 1px solid #C20;
+  margin: 50px 0;
+  font-style: italic;
+  position: relative;
+  padding: 0 0 0 0;
+  box-shadow: 0 2px 5px -3px #000;
+  border-radius: 3px;
+}
+.demo3:before {
+  content: "Latest Deaths";
+  display: inline-block;
+  font-style: normal;
+  background: #C20;
+  padding: 10px;
+  color: #FFF;
+  font-weight: bold;
+  position: absolute;
+}
+.demo3 ul li {
+  list-style: none;
+  padding: 10px 120px;
+}

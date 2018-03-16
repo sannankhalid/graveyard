@@ -93,6 +93,6 @@ class GravesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def grave_params
-      params.require(:grave).permit(:name, :relationship_id, :relationship_name, :gender, :caste_id, :died_at, :age, :number, attachment_attributes: [:id, :document])
+      params.require(:grave).permit(:name, :relationship_id, :relationship_name, :gender, :caste_id,:identity_id, :died_at, :age, :number, attachment_attributes: [:id, :document])
     end
 end

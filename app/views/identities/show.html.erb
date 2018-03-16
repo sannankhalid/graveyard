@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @identity.name %>
+</p>
+
+<p>
+  <strong>Is active:</strong>
+  <%= @identity.is_active %>
+</p>
+
+<%= link_to 'Edit', edit_identity_path(@identity) %> |
+<%= link_to 'Back', identities_path %>

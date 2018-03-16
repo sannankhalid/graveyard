@@ -8,3 +8,38 @@
 <div class="data_render_area">
 
 </div>
+
+<% ticker_graves =Grave.last(5) %>
+
+
+<div class="demo3 pull-right col-sm-12 col-md-5 col-lg-4">
+  <ul>
+    <% if ticker_graves.present? %>
+        <% ticker_graves.each do |grave| %>
+            <li><%= grave.name %></li>
+
+        <% end %>
+    <% else %>
+        <li>No data found</li>
+    <% end %>
+  </ul>
+</div>
+<script type="text/javascript">
+
+
+  var dd = $('.demo3').easyTicker({
+    direction: 'up',
+    easing: 'easeInOutBack',
+    speed: 'slow',
+    interval: 6000,
+    height: 'auto',
+    visible: 1,
+    mousePause: 0,
+    controls: {
+      up: '.up',
+      down: '.down',
+      toggle: '.toggle',
+      stopText: 'Stop !!!'
+    }
+  }).data('easyTicker');
+</script>

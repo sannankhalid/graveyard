@@ -13,6 +13,12 @@
         </div>
     <% end %>
 
+    <div class='form-group'>
+      <%= form.label :gender %>
+      <%= form.select(:gender, options_for_select(Grave.genders.map { |k, v| [k, k] }, @grave.gender), {prompt: 'Select Gender'}, class: 'form-control', 'required': true) %>
+
+    </div>
+
     <div class='form-group'>      <%= form.label :name %>
       <%= form.text_field :name, id: :grave_name, class: 'form-control', 'required': true %>
     </div>
@@ -28,18 +34,26 @@
     </div>
 
     <div class='form-group'>
-      <%= form.label :gender %>
-      <%= form.select(:gender, options_for_select(Grave.genders.map { |k, v| [k, k] }, @grave.gender), {prompt: 'Select Gender'}, class: 'form-control', 'required': true) %>
-
-    </div>
-    <div class='form-group'>
       <label>Caste</label>
-      <%= form.select(:caste_id, @castes.map { |p| [p.name, p.id] }, {prompt: 'Select Caste'}, class: 'form-control', 'required': true) %>
+      <%= form.select 'caste_id', options_for_select([[@grave.caste.try(:name),@grave.caste.try(:id)]],@grave.caste_id),{include_blank: "Caste"},'data-placeholder' => "Caste" , id: 'caste_id', 'data-plugin' => "select2",
+                      'data-allow-clear'=>"true", 'data-max-options'=>"10", class:'form-control js-data-example-ajax caste_name_selector',
+                      'data-parsley-required' => true, 'data-parsley-required-message' => "Caste is required" ,
+                      'data-url' => get_caste_path,disabled: Caste.count < 1%>
+    </div>
 
+
+
+    <div class='form-group'>
+      <label>Identity</label>
+      <%= form.select 'identity_id', options_for_select([[@grave.identity.try(:name),@grave.identity.try(:id)]],@grave.identity_id),{include_blank: "Identity"},'data-placeholder' => "Identity" , id: 'identity_id', 'data-plugin' => "select2",
+                      'data-allow-clear'=>"true", 'data-max-options'=>"10", class:'form-control js-data-example-ajax identity_name_selector',
+                      'data-parsley-required' => true, 'data-parsley-required-message' => "Identity is required" ,
+                      'data-url' => get_identity_path,disabled: Identity.count < 1%>
     </div>
 
     <div class='form-group'>
       <%= form.label :died_at %>
+      <br/>
       <%= form.date_select :died_at, id: :grave_died_at, :start_year => Date.current.year, :end_year => 1920,
                            prompt: {day: 'Select day', month: 'Select month', year: 'Select year'}, :include_blank => true, class: 'form-control', 'required': true %>
     </div>
@@ -82,3 +96,9 @@
       <%= form.submit 'Submit', class: 'btn btn-primary' %>
     </div>
 <% end %>
+
+
+<script type="text/javascript">
+  select2_graves_dropdown('.caste_name_selector');
+  select2_graves_dropdown('.identity_name_selector');
+</script>

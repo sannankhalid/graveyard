@@ -1,4 +1,7 @@
+//= require jquery.easing.min
+//= require jquery.easy-ticker
 //= require select2.full
+
 
 function select2_graves_dropdown(selector) {
 
