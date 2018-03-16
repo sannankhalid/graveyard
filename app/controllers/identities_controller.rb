@@ -1,4 +1,5 @@
 class IdentitiesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_identity, only: [:show, :edit, :update, :destroy]
 
   # GET /identities
