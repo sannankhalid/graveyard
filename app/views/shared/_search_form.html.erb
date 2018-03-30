@@ -18,7 +18,7 @@
       <br/>
       <% Grave.genders.each do |k, v| %>
           <label class="radio-inline">
-            <input type="radio" name="grave[gender]" value="<%= k %>"> <%= k.capitalize %>
+            <input type="radio" class="radio_gender" name="grave[gender]" value="<%= k %>"> <%= k.capitalize %>
           </label>
       <% end %>
 

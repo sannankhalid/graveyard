@@ -53,8 +53,8 @@ class HomeController < ApplicationController
 
 
   def graves_data
-
-    graves = Grave.select([:id, :name, :relationship_name, :relationship_id]).where('LOWER(name) LIKE LOWER(?) || LOWER(relationship_name) LIKE LOWER(?)', "%#{params[:q].to_s.strip}%", "%#{params[:q].to_s.strip}%").order(:name).limit(10).uniq.map { |e|
+    gender_conditions = "gender = '#{params[:gender] == 'male' ? 1 : 2}'" if params[:gender].present?
+    graves = Grave.select([:id, :gender, :name, :relationship_name, :relationship_id]).where(gender_conditions).where('LOWER(name) LIKE LOWER(?) || LOWER(relationship_name) LIKE LOWER(?)', "%#{params[:q].to_s.strip}%", "%#{params[:q].to_s.strip}%").order(:name).limit(10).uniq.map { |e|
 
 
       name_full = []

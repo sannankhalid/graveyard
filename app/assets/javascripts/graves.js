@@ -15,6 +15,7 @@ function select2_graves_dropdown(selector) {
           q: params.term,
           page: params.page,
           type: $('#grave_id').val(),
+          gender: $("input[name='grave[gender]']:checked").val()
         };
         // Query paramters will be ?search=[term]&page=[page]
         return query;
